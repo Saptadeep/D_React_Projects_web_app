@@ -5,21 +5,29 @@ import SayHello from './common/reusableComponents/helloWorld';
 
 export default class App extends Component {
   constructor() {
-    super(...arguments);
+    super(...arguments)
+
     this.state = {
       greeteesName: "Sapta"
-  };
+    };
+  }
+handleClick() {
+   this.setState({greeteesName: "TenderFeet"});
+   console.log("Clicked");
 }
+ 
   render() {
     return (
      <div>
+     <h1>ToDo: Attaching a handler event</h1>
      <h2>
-     <SpecificUsesOfReusableComponentClasses />
-     <ReusableComponentClass1Hello greeteesName = {this.state.greeteesName} greetersName = "Mama" />
-     {this.setState({greeteesName: "Jagdish"})}
-      <ReusableComponentClass1Hello greeteesName = {this.state.greeteesName} greetersName = "Mama" />
+       <SpecificUsesOfReusableComponentClasses/>
+       <ReusableComponentClass1Hello greeteesName = {this.state.greeteesName} greetersName = "Mama" />
+       <button onClick= {this.handleClick.bind(this)}> Click </button>
 
-     </h2>
+       <ReusableComponentClass2Button textToDisplay = "ClickAgain"/>
+
+    </h2>
      </div>
     );
   }
@@ -29,9 +37,12 @@ class SpecificUsesOfReusableComponentClasses extends Component{
     return(
       <div>
         <ReusableComponentClass1Hello greeteesName = "Guido" greetersName = "Mama" />
-        <ReusableComponentClass2Button textToDisplay = "Exit" greetersName = "Mama" />
+        <ReusableComponentClass2Button textToDisplay = "Exit" greetersName = "Mama" 
+
+        />
+
       </div>
-    )
+    );
 
   }
 }
@@ -48,9 +59,10 @@ class ReusableComponentClass1Hello extends Component{
 class ReusableComponentClass2Button extends Component{
     render(){
       return(
-        <button>
+        <button onClick ={App.handleClick}>
           {this.props.textToDisplay}
         </button>
       )
   }  
 }
+
