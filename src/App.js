@@ -57,12 +57,15 @@ class ReusableComponentClass1Hello extends Component{
   }
 }
 class ReusableComponentClass2Button extends Component{
+    handleClick(argument) {
+      {console.log('Inside click')}
+    }
     render(){
       return(
-        <button onClick ={App.handleClick}>
+        <button onClick ={this.handleClick.bind(this)}>
           {this.props.textToDisplay}
         </button>
       )
-  }  
+  }
 }
 
