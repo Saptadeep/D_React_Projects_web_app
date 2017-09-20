@@ -4,14 +4,12 @@ import './App.css';
 import SayHello from './common/reusableComponents/helloWorld';
 
 export default class App extends Component {
+
+
+
   render() {
     return (
-      <div>
-      {
-      //This is a comment
-      }
         <NameForm />
-      </div>
     )
   }
 }
@@ -19,39 +17,29 @@ export default class App extends Component {
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    {console.log(this.state)}
+    this.handleChange = this.handleChange.bind(this);
   }
-
-  handleChange(event) {
-    alert('event.target.value: ' + event.target.value);    
-    this.setState({value: event.target.value});
+  componentDidMount() {
+      alert('ComponentDidMount: ' + this.inputtt.value )
+    }
+  handleSubmit() {
+    alert('A name was submitted: ' + this.inputtt.value);
   }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+  
+  handleChange() {
+    alert('A name was submitted: ' + this.inputtt.value);
   }
 
   render() {
-      {console.log(this.state.value)}
     return (
-
-      <div>
-
       <form onSubmit={this.handleSubmit}>
-
-      {console.log(this)}
         <label>
           Name:
-          <input type="text"  />
+          <input onChange = {this.handleChange} type="text" ref={(inputtt) => this.inputtt = inputtt} />
         </label>
         <input type="submit" value="Submit" />
       </form>
-      </div>
     );
   }
 }
